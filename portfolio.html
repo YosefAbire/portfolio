@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yosef Abire | Information Systems Analyst & Backend Engineer</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --gray: #7f8c8d;
+            --light-gray: #f5f7fa;
+            --border-radius: 4px;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background-color: #fff;
+            font-weight: 400;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: var(--spacing-md);
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            color: var(--dark);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--primary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: var(--spacing-md);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* HEADER */
+        header {
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md) 0;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-lg);
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--light-gray);
+            border-bottom: 1px solid #e0e6ed;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .highlight-box {
+            background-color: white;
+            border-left: 4px solid var(--accent);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* PHOTO STYLING */
+        .photo-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .profile-photo {
+            width: 300px;
+            height: 360px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid #e0e6ed;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        /* PHOTO PLACEHOLDER STYLING */
+        .photo-placeholder {
+            width: 300px;
+            height: 360px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #e0e6ed;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+
+        .photo-placeholder i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .photo-placeholder p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* ABOUT SECTION */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .intersection-diagram {
+            background-color: var(--light-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+        }
+
+        .intersection-item {
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-md);
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .intersection-item h4 {
+            color: var(--accent);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* EXPERIENCE SECTION */
+        .projects-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+        }
+
+        .project-card {
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-header {
+            background-color: var(--secondary);
+            color: white;
+            padding: var(--spacing-md);
+        }
+
+        .project-header h3 {
+            color: white;
+            margin-bottom: 0;
+        }
+
+        .project-content {
+            padding: var(--spacing-lg);
+        }
+
+        .project-section {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .project-section h4 {
+            color: var(--secondary);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .project-section h4 i {
+            color: var(--accent);
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+
+        .tech-tag {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .ongoing-badge {
+            display: inline-block;
+            background-color: #f39c12;
+            color: white;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: var(--spacing-sm);
+        }
+
+        /* HOW I WORK SECTION */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .process-step {
+            background-color: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--accent);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* SKILLS SECTION */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .skill-category {
+            background-color: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list li i {
+            color: var(--accent);
+            margin-right: var(--spacing-sm);
+            width: 20px;
+        }
+
+        /* CONTACT SECTION */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.7rem;
+            }
+
+            .hero-layout {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-container {
+                justify-content: center;
+                margin-top: var(--spacing-lg);
+            }
+
+            .profile-photo, .photo-placeholder {
+                width: 250px;
+                height: 300px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: var(--spacing-md);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .process-steps, .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: var(--spacing-lg) 0;
+            }
+
+            .project-content {
+                padding: var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">Yosef <span>Abire</span></div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Systems Approach</a></li>
+                <li><a href="#experience">Experience & Projects</a></li>
+                <li><a href="#process">How I Work</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-layout">
+            <div>
+                <h1>I design and build backend systems by first understanding people, processes, and data.</h1>
+                <p class="hero-subtitle">
+                    Information Systems Analyst & Backend Engineer with experience across e-commerce, HR systems, AI engines, and agriculture tech. Backend-heavy, systems-first approach.
+                </p>
+                <a href="#experience" class="btn">View Systems I've Built</a>
+
+                <div class="highlight-box">
+                    <p><strong>Positioning:</strong> I do more than write backend code. I analyze problems, coordinate people, and design systems that fit organizations. I have worked with real teams under real constraints.</p>
+                </div>
+            </div>
+
+            <div class="photo-container"> 
+                
+                <img src="C:\Users\hp\Downloads\portfolio.jpg" alt="Yosef Abire - Information Systems Analyst & Backend Engineer" class="profile-photo">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+        <h2>Systems Thinking, Not Biography</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>My background in Information Systems provides a framework for understanding that effective technical solutions begin with comprehending workflows, roles, and organizational constraints.</p>
+                <p>Before writing code, I analyze how information flows through an organization, where bottlenecks occur, and how different stakeholders interact with data. This approach ensures that systems I build are not just technically sound but organizationally appropriate.</p>
+                <p>I operate at the intersection of business needs, human coordination, and technical architecture—translating between these domains to create systems that function within real-world constraints.</p>
+            </div>
+            <div class="intersection-diagram">
+                <div class="intersection-item">
+                    <h4>Business Needs</h4>
+                    <p>Understanding organizational goals, constraints, and ROI requirements before technical decisions.</p>
+                </div>
+                <div class="intersection-item">
+                    <h4>Human Coordination</h4>
+                    <p>Working across teams (developers, IT, HR) to ensure systems fit actual workflows and communication patterns.</p>
+                </div>
+                <div class="intersection-item">
+                    <h4>Technical Architecture</h4>
+                    <p>Designing robust, scalable backend systems with appropriate technologies for the specific context.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE & PROJECTS SECTION -->
+<section id="experience">
+    <div class="container">
+        <h2>Experience & Projects</h2>
+        <div class="projects-container">
+            
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>E-Commerce Backend System</h3>
+                </div>
+                <div class="project-content">
+                    <div class="project-section">
+                        <h4><i class="fas fa-info-circle"></i> Context</h4>
+                        <p>Production backend system for a mid-sized e-commerce platform handling product listings, user accounts, and order processing.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Problem</h4>
+                        <p>Legacy system couldn't scale with growing product catalog and user base, with inconsistent data models causing inventory discrepancies.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-user-tie"></i> My Role</h4>
+                        <p>Backend developer responsible for designing data models, API structure, and implementing core business logic.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-project-diagram"></i> System Design</h4>
+                        <p>Structured the system around clear domain models: Products, Orders, Users, and Inventory. Designed RESTful APIs with consistent error handling and validation. Implemented database indexing for performance-critical queries.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-code"></i> Technologies</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-chart-line"></i> Outcome / Learning</h4>
+                        <p>System handled 30% more concurrent users with improved response times. Learned to balance normalization with query performance in e-commerce data models.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>HR Management System <span style="font-size: 0.9rem; font-weight: normal;">(Internship)</span></h3>
+                </div>
+                <div class="project-content">
+                    <div class="project-section">
+                        <h4><i class="fas fa-info-circle"></i> Context</h4>
+                        <p>Internal HR system for employee management, leave tracking, and performance reviews at a medium-sized organization.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Problem</h4>
+                        <p>Manual HR processes caused delays and errors. IT and HR departments needed a unified system that reflected actual approval workflows.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-user-tie"></i> My Role</h4>
+                        <p>Backend development, task breakdown and delegation, and primary communication liaison between developers, IT staff, and HR stakeholders.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-project-diagram"></i> System Design</h4>
+                        <p>Translated HR workflows (approval chains, role-based permissions, notification triggers) into system logic. Designed flexible data models to accommodate changing organizational policies.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-code"></i> Technologies</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">JWT Auth</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-chart-line"></i> Outcome / Learning</h4>
+                        <p>Reduced HR processing time by approximately 40%. Learned to navigate organizational constraints and communicate technical trade-offs to non-technical stakeholders effectively.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Marketplace AI Engine <span class="ongoing-badge">In Progress</span></h3>
+                </div>
+                <div class="project-content">
+                    <div class="project-section">
+                        <h4><i class="fas fa-info-circle"></i> Context</h4>
+                        <p>Designing and building a marketplace-oriented AI engine for product recommendations and search optimization.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Problem</h4>
+                        <p>Marketplace users struggle to find relevant products among large catalogs, leading to poor conversion rates.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-user-tie"></i> My Role</h4>
+                        <p>System architecture design, data flow planning, and incremental development of recommendation algorithms.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-project-diagram"></i> System Design</h4>
+                        <p>Modular architecture separating data collection, model training, and inference services. Designed for gradual enhancement as more user interaction data becomes available.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-code"></i> Technologies</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-chart-line"></i> Current Status / Approach</h4>
+                        <p>Project is in active development. Focusing on building a solid foundation for data collection and model evaluation before full deployment. Learning to balance research-oriented development with production constraints.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 4 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Agricultural Retail Management System</h3>
+                </div>
+                <div class="project-content">
+                    <div class="project-section">
+                        <h4><i class="fas fa-info-circle"></i> Context</h4>
+                        <p>Final year project: A system to manage agricultural retail workflows, linking producers, sellers, and management processes.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Problem</h4>
+                        <p>Agricultural supply chains suffer from information gaps between producers and retailers, leading to inefficiencies and waste.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-user-tie"></i> My Role</h4>
+                        <p>Initiator of the idea, core system designer, and technical lead for a 3-member team.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-project-diagram"></i> System Design</h4>
+                        <p>Backend-first design focused on agricultural retail workflows. Created data models for products, suppliers, inventory with perishability tracking, and order management.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-code"></i> Technologies</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">SQLite</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">Vue.js</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h4><i class="fas fa-chart-line"></i> Outcome / Learning</h4>
+                        <p>Successfully demonstrated a working prototype. Learned to define system scope based on real constraints, plan architecture before implementation, and lead a small technical team through a complete project lifecycle.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- HOW I WORK SECTION -->
+<section id="process">
+    <div class="container">
+        <h2>How I Work</h2>
+        <p>My process ensures systems are built to fit organizational contexts, not just technical requirements.</p>
+        
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Understand Domain & Stakeholders</h3>
+                <p>Analyze business processes, constraints, and the people involved before any technical design begins.</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Map Workflows & Roles</h3>
+                <p>Document how information flows through the organization and how different roles interact with the system.</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Design System Architecture</h3>
+                <p>Create technical architecture that supports the identified workflows while considering scalability and maintainability.</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Choose Technologies Based on Constraints</h3>
+                <p>Select tools and frameworks that fit organizational capabilities, existing infrastructure, and team expertise.</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3>Implement Backend Logic</h3>
+                <p>Build core system functionality with clean, documented code and appropriate testing.</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">6</div>
+                <h3>Iterate with Feedback</h3>
+                <p>Continuously refine the system based on feedback from users and teams, ensuring it evolves with organizational needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section id="skills">
+    <div class="container">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Systems & Analysis</h3>
+                <ul class="skill-list">
+                    <li><i class="fas fa-check"></i> Requirements analysis</li>
+                    <li><i class="fas fa-check"></i> Workflow modeling</li>
+                    <li><i class="fas fa-check"></i> Stakeholder communication</li>
+                    <li><i class="fas fa-check"></i> System documentation</li>
+                    <li><i class="fas fa-check"></i> Process optimization</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Backend Development</h3>
+                <ul class="skill-list">
+                    <li><i class="fas fa-check"></i> Python, Django</li>
+                    <li><i class="fas fa-check"></i> Node.js, Express</li>
+                    <li><i class="fas fa-check"></i> REST APIs</li>
+                    <li><i class="fas fa-check"></i> Databases & data modeling</li>
+                    <li><i class="fas fa-check"></i> System architecture</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Collaboration</h3>
+                <ul class="skill-list">
+                    <li><i class="fas fa-check"></i> Task splitting & delegation</li>
+                    <li><i class="fas fa-check"></i> Working with IT & HR teams</li>
+                    <li><i class="fas fa-check"></i> Explaining technical ideas to non-technical staff</li>
+                    <li><i class="fas fa-check"></i> Cross-team coordination</li>
+                    <li><i class="fas fa-check"></i> Project documentation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+    <div class="container">
+        <div class="contact-container">
+            <h2>Contact</h2>
+            <p>I'm interested in opportunities where I can apply systems thinking and backend engineering to solve real organizational problems. Let's discuss how I can contribute to your team.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="jossyyasub@gmail.com">Email</a>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+251984909329</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+251957425458</span>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/yosef-abire-4a5841394?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">My linkedin Account</a>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/YosefAbire" target="_blank">My GitHub Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© <span id="currentYear"></span> Yosef Abire. Information Systems Analyst & Backend Engineer.</p>
+        <p style="margin-top: var(--spacing-sm); font-size: 0.9rem; color: #bdc3c7;">Designed for clarity, structure, and professional competence.</p>
+    </div>
+</footer>
+
+<script>
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // Mobile navigation toggle
+    document.getElementById('mobileToggle').addEventListener('click', function() {
+        document.getElementById('navLinks').classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            document.getElementById('navLinks').classList.remove('active');
+        });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
